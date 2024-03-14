@@ -1,5 +1,13 @@
-import { createPool } from 'mysql2/promise'
+// import mysql from 'mysql2/promise'
 
-export const pool = createPool({
-    
-})
+// const config = {
+//   host: 'localhost',
+//   user: 'root',
+//   port: '4000',
+//   password: '',
+//   database: 'taskList'
+// }
+// const connectionString = process.env.DATABASE_URL ?? config
+// const connection = await mysql.createConnection(connectionString)
+
+
