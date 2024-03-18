@@ -1,25 +1,19 @@
-import React from "react";
-import { deleteTaskRequest } from "../api/tasks.api";
+import { useTasks } from "../context/TaskContext";
 
 function TaskCard({ task }) {
-  const handleDelete = async (id) => {
-    try {
-      const response = await deleteTaskRequest(id);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { deleteTask } = useTasks();
+
   return (
     <div>
       <h2>{task.title}</h2>
       <p>{task.description}</p>
       <span>{task.done == 1 ? "✅" : "❌"}</span>
       <span>{task.createdAt}</span>
-      <button onClick={() => handleDelete(task.id)}>Delete</button>
+      <button onClick={() => deleteTask(task.id)}>Delete</button>
       <button>Edit</button>
     </div>
   );
 }
 
 export default TaskCard;
+ 
