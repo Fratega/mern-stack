@@ -14,3 +14,8 @@ export const updateTaskRequest = async (id, newFields) =>
 
 export const deleteTaskRequest = async (id) =>
   await axios.delete(`http://localhost:4000/tasks/${id}`);
+
+export const toggleTaskDoneRequest = async (id, done) =>
+  await axios.put(`http://localhost:4000/tasks/${id}`, {
+    done
+  });
