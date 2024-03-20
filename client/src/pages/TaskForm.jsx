@@ -27,9 +27,7 @@ function TaskForm() {
   }, []);
 
   return (
-    <div>
-      <h1>{params.id ? "Edit Task" : "New Task"}</h1>
-
+    <div className="">
       <Formik
         initialValues={task}
         enableReinitialize={true}
@@ -38,10 +36,10 @@ function TaskForm() {
 
           if (params.id) {
             await updateTask(params.id, values);
-            navigate("/");
           } else {
             await createTask(values);
           }
+          navigate("/");
           setTask({
             title: "",
             description: "",
@@ -49,29 +47,41 @@ function TaskForm() {
         }}
       >
         {({ handleChange, handleSubmit, values, isSubmitting }) => (
-          <Form onSubmit={handleSubmit}>
-            <label>
+          <Form
+            onSubmit={handleSubmit}
+            className="bg-slate-300 max-w-sm rounded-md p-4 mx-auto mt-10"
+          >
+            <h1 className="text-xl font-bold uppercase text-center">
+              {params.id ? "Edit Task" : "New Task"}
+            </h1>
+            <label className="block">
               title
               <input
                 type="text"
                 name="title"
                 placeholder="Write a description"
+                className="px-2 py-1 rounded-sm w-full"
                 onChange={handleChange}
                 value={values.title}
               />
             </label>
-            <label>
+            <label className="block">
               description
               <textarea
                 name="description"
                 rows="3"
                 placeholder="Write a description"
+                className="px-2 py-1 rounded-sm w-full"
                 onChange={handleChange}
                 value={values.description}
               ></textarea>
             </label>
 
-            <button type="submit" disabled={isSubmitting}>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="block bg-indigo-500 px-2 py-1 text-white w-full rounded-md"
+            >
               {isSubmitting ? "Saving..." : "Save"}
             </button>
           </Form>

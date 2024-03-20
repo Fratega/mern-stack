@@ -10,14 +10,33 @@ function TaskCard({ task }) {
   };
 
   return (
-    <div>
-      <h2>{task.title}</h2>
-      <p>{task.description}</p>
-      <span>{task.done == 1 ? "✅" : "❌"}</span>
+    <div className="bg-zinc-700 text-white rounded-md p-4">
+      <header className="flex justify-between">
+        <h2 className="text-sm font-bold">{task.title}</h2>
+        <span>{task.done == 1 ? "✅" : "❌"}</span>
+      </header>
+      <p className="text-xs">{task.description}</p>
       <span>{task.createdAt}</span>
-      <button onClick={() => deleteTask(task.id)}>Delete</button>
-      <button onClick={() => navigate(`/edit/${task.id}`)}>Edit</button>
-      <button onClick={() => handleDone(task.done)}>Toggle task</button>
+      <div className="flex gap-x-1">
+        <button
+          className="bg-slate-300 px-2 py-1 text-black"
+          onClick={() => deleteTask(task.id)}
+        >
+          Delete
+        </button>
+        <button
+          className="bg-slate-300 px-2 py-1 text-black"
+          onClick={() => navigate(`/edit/${task.id}`)}
+        >
+          Edit
+        </button>
+        <button
+          className="bg-slate-300 px-2 py-1 text-black"
+          onClick={() => handleDone(task.done)}
+        >
+          Toggle task
+        </button>
+      </div>
     </div>
   );
 }
